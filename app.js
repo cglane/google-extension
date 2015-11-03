@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     main.init()
 });
 
@@ -15,14 +16,17 @@ var main = {
       url: main.url,
       method: 'GET',
       success: function (data) {
-          var paragraphs = $('h2');
+          var paragraphs = $('p');
+          var h2 = $('h2');
           console.log(data);
           console.log(data.data.children.length);
           for(var i = 0; i <data.data.children.length; i++){
-            var content = data.data.children[i].data.title;
-
+            var header = data.data.children[i].data.title;
+            var content = data.data.children[i].data.selftext_html;
+            $(h2[i]).html(header);
             $(paragraphs[i]).html(content);
-            console.log(paragraphs[i]);
+
+            console.log(content);
             }
           }
     });
